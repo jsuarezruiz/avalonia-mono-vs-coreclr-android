@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/eng/">
+    <File Path="eng/Variants.props" />
+    <File Path="global.json" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="src/Common.Android/Common.Android.props" />
+    <File Path="src/Common.Android/BenchProbe.cs" />
+  </Folder>
+  <Project Path="src/BenchApp/BenchApp.csproj" />
+  <Project Path="tools/Bench.Core/Bench.Core.csproj" />
+  <Project Path="tools/Bench/Bench.csproj" />
+  <Project Path="tools/Bench.Tests/Bench.Tests.csproj" />
+  <Project Path="src/BenchApp.Android/BenchApp.Android.csproj" />
+  <Project Path="src/BenchApp.Sparkle.Android/BenchApp.Sparkle.Android.csproj" />
+</Solution>
