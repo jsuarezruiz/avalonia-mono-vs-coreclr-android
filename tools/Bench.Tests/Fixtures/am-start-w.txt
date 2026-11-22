@@ -1,0 +1,7 @@
+Starting: Intent { cmp=com.avaloniabench.net11.dashboard.coreclr/bench.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.avaloniabench.net11.dashboard.coreclr/bench.MainActivity
+TotalTime: 1194
+WaitTime: 1270
+Complete

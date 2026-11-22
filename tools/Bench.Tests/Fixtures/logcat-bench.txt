@@ -1,0 +1,12 @@
+11-14 10:13:37.091  4166  4166 I BENCH   : phase=application_ctor ms=348
+11-14 10:13:37.091  4166  4166 I BENCH   : package=com.avaloniabench.net11.dashboard.coreclr framework=.NET 11.0.0
+11-14 10:13:37.095  4166  4166 I BENCH   : phase=customize_app_builder ms=352
+11-14 10:13:37.336  4166  4166 I BENCH   : phase=app_initialize_begin ms=594
+11-14 10:13:37.360  4166  4166 I BENCH   : phase=app_initialize_end ms=618
+11-14 10:13:37.370  4166  4166 I BENCH   : phase=after_setup ms=628
+11-14 10:13:37.370  4166  4166 I BENCH   : phase=framework_init ms=628
+11-14 10:13:37.397  4166  4166 I BENCH   : phase=activity_oncreate ms=654
+11-14 10:13:37.837  4166  4166 I BENCH   : phase=view_loaded ms=1094
+11-14 10:13:37.942  4166  4166 I BENCH   : phase=first_frame ms=1199
+11-14 10:13:37.963  4166  4166 I BENCH   : phase=fully_drawn ms=1220
+11-14 10:13:37.967   542   558 I ActivityTaskManager: Fully drawn com.avaloniabench.net11.dashboard.coreclr/bench.MainActivity: +1s311ms
