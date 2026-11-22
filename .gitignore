@@ -1,0 +1,24 @@
+# Build output
+bin/
+obj/
+# APKs that `bench build` produces
+artifacts/
+TestResults/
+*.binlog
+
+# An isolated .NET 11 SDK install used by the net11 track (see README, Quick start)
+.dotnet11/
+
+# Editors and OS
+.vs/
+.idea/
+.vscode/
+*.user
+.DS_Store
+Thumbs.db
+
+# bench output that is not source: recorded clips and videos stay out of git (attach the video to a post or a release).
+# A session's runs.csv, report.md and compare.json can be committed.
+results/bench/*/takes/
+results/bench/*/*.mp4
+bench-results/
