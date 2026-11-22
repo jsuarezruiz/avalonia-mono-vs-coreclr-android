@@ -1,0 +1,54 @@
+<Project>
+  <!--
+    Single source of truth for what each benchmark variant means.
+    Select one with:  dotnet publish -c Release -p:Variant=<name>
+    Everything else (trimming, ABI, app code, Avalonia version) is identical across variants.
+  -->
+
+  <PropertyGroup>
+    <Variant Condition="'$(Variant)' == ''">mono-aot-profiled</Variant>
+  </PropertyGroup>
+
+  <!-- Mono, no AOT: everything is JIT-compiled at runtime. -->
+  <PropertyGroup Condition="'$(Variant)' == 'mono-jit'">
+    <_BenchVariantKnown>true</_BenchVariantKnown>
+    <UseMonoRuntime>true</UseMonoRuntime>
+    <RunAOTCompilation>false</RunAOTCompilation>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+  </PropertyGroup>
+
+  <!-- Mono, profiled AOT. This is what a stock .NET 10 Release build does today. -->
+  <PropertyGroup Condition="'$(Variant)' == 'mono-aot-profiled'">
+    <_BenchVariantKnown>true</_BenchVariantKnown>
+    <UseMonoRuntime>true</UseMonoRuntime>
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+  </PropertyGroup>
+
+  <!-- Mono, full AOT of every assembly (bigger APK, fewer JIT fallbacks). -->
+  <PropertyGroup Condition="'$(Variant)' == 'mono-aot-full'">
+    <_BenchVariantKnown>true</_BenchVariantKnown>
+    <UseMonoRuntime>true</UseMonoRuntime>
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+  </PropertyGroup>
+
+  <!-- CoreCLR (experimental on Android in .NET 10, the only runtime from .NET 11 Preview 6). -->
+  <PropertyGroup Condition="'$(Variant)' == 'coreclr'">
+    <_BenchVariantKnown>true</_BenchVariantKnown>
+    <UseMonoRuntime>false</UseMonoRuntime>
+  </PropertyGroup>
+
+  <Target Name="_BenchValidateVariant" BeforeTargets="BeforeBuild;BeforeRebuild">
+    <Error Condition="'$(_BenchVariantKnown)' != 'true'"
+           Text="Unknown Variant '$(Variant)'. Valid values: mono-jit, mono-aot-profiled, mono-aot-full, coreclr." />
+    <Error Condition="'$(BenchTrack)' == 'net11' and '$(UseMonoRuntime)' == 'true'"
+           Text="Variant '$(Variant)' uses Mono, which .NET 11 no longer supports on Android (NETSDK1242). Use Variant=coreclr with BenchTrack=net11." />
+  </Target>
+
+  <!-- Print what the SDK actually resolved, so build logs show the real configuration. -->
+  <Target Name="_BenchPrintVariant" BeforeTargets="CoreCompile">
+    <Message Importance="high"
+             Text="[bench] Track=$(BenchTrack) Variant=$(Variant) UseMonoRuntime=$(UseMonoRuntime) RunAOTCompilation=$(RunAOTCompilation) AndroidEnableProfiledAot=$(AndroidEnableProfiledAot) PublishTrimmed=$(PublishTrimmed) AndroidLinkMode=$(AndroidLinkMode) PublishReadyToRun=$(PublishReadyToRun) PublishReadyToRunComposite=$(PublishReadyToRunComposite) TieredPGO=$(TieredPGO) RID=$(RuntimeIdentifier)" />
+  </Target>
+</Project>

@@ -6,7 +6,7 @@ artifacts/
 TestResults/
 *.binlog
 
-# An isolated .NET 11 SDK install used by the net11 track (see README, Quick start)
+# An isolated .NET 11 SDK install used by the net11 track (see docs/bench.md)
 .dotnet11/
 
 # Editors and OS
