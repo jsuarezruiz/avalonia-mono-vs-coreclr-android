@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <BenchScenario>sparkle</BenchScenario>
+  </PropertyGroup>
+
+  <!-- What each runtime variant means lives in one place: eng/Variants.props -->
+  <Import Project="$(MSBuildThisFileDirectory)..\..\eng\Variants.props" />
+  <Import Project="$(MSBuildThisFileDirectory)..\Common.Android\Common.Android.props" />
+
+  <ItemGroup>
+    <!-- Sparkle Party Particles, copied from jsuarezruiz/avalonia_vignettes. See third_party/avalonia_vignettes/PROVENANCE.md -->
+    <ProjectReference Include="..\..\third_party\avalonia_vignettes\vignettes\sparkle_party\SparkleParty\SparkleParty.csproj" />
+  </ItemGroup>
+</Project>

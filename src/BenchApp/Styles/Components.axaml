@@ -1,0 +1,289 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="using:BenchApp.Controls">
+    <!--
+        Component styles. Everything here reads from Palette.axaml / Icons.axaml through DynamicResource.
+        Interaction states follow one pattern: a short transition on the resting style, and the changed values on
+        :pointerover / :pressed. (On a touch screen :pointerover is what you see while a finger is down.)
+    -->
+
+    <!-- Page -->
+    <Style Selector="StackPanel.page">
+        <Setter Property="Margin" Value="{DynamicResource Margin.Page}" />
+        <Setter Property="Spacing" Value="{DynamicResource Spacing.Page}" />
+    </Style>
+
+    <!-- Cards -->
+    <Style Selector="Border.card">
+        <Setter Property="Background" Value="{DynamicResource Brush.Surface}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Line}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Radius.Card}" />
+        <Setter Property="Padding" Value="{DynamicResource Padding.Card}" />
+        <Setter Property="BoxShadow" Value="{DynamicResource Shadow.Card}" />
+        <Setter Property="RenderTransform" Value="none" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.18" Easing="CubicEaseOut" />
+                <BoxShadowsTransition Property="BoxShadow" Duration="0:0:0.18" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.18" />
+            </Transitions>
+        </Setter>
+    </Style>
+    <Style Selector="Border.card.interactive:pointerover">
+        <Setter Property="RenderTransform" Value="translateY(-2px)" />
+        <Setter Property="BoxShadow" Value="{DynamicResource Shadow.CardHover}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.LineStrong}" />
+    </Style>
+    <Style Selector="Border.card.tile">
+        <Setter Property="Padding" Value="{DynamicResource Padding.Tile}" />
+    </Style>
+
+    <!-- Header -->
+    <Style Selector="Border.avatar">
+        <Setter Property="Width" Value="44" />
+        <Setter Property="Height" Value="44" />
+        <Setter Property="CornerRadius" Value="22" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Avatar}" />
+    </Style>
+    <Style Selector="Button.icon">
+        <Setter Property="Width" Value="44" />
+        <Setter Property="Height" Value="44" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="CornerRadius" Value="22" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Surface}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Line}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    <Style Selector="Button.icon:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Brush.Hover}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.LineStrong}" />
+    </Style>
+    <Style Selector="Ellipse.alert-dot">
+        <Setter Property="Width" Value="10" />
+        <Setter Property="Height" Value="10" />
+        <Setter Property="Fill" Value="{DynamicResource Brush.Alert}" />
+        <Setter Property="Stroke" Value="{DynamicResource Brush.Surface}" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Margin" Value="0,8,8,0" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+    </Style>
+    <Style Selector="Path.glyph">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="Stroke" Value="{DynamicResource Brush.Ink}" />
+        <Setter Property="StrokeThickness" Value="1.8" />
+        <Setter Property="StrokeLineCap" Value="Round" />
+        <Setter Property="StrokeJoin" Value="Round" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!-- Hero -->
+    <Style Selector="Border.hero">
+        <Setter Property="Background" Value="{DynamicResource Brush.Hero}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Radius.Hero}" />
+        <Setter Property="Padding" Value="{DynamicResource Padding.Hero}" />
+        <Setter Property="BoxShadow" Value="{DynamicResource Shadow.Hero}" />
+    </Style>
+    <Style Selector="Border.note">
+        <Setter Property="Background" Value="{DynamicResource Brush.OnForestTrack}" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="10,5" />
+    </Style>
+    <Style Selector="Grid.gauge">
+        <Setter Property="Width" Value="132" />
+        <Setter Property="Height" Value="132" />
+    </Style>
+    <Style Selector="c|RingGauge.hero">
+        <Setter Property="StrokeThickness" Value="11" />
+        <Setter Property="TrackBrush" Value="{DynamicResource Brush.OnForestTrack}" />
+        <Setter Property="ValueBrush" Value="{DynamicResource Brush.Sun}" />
+    </Style>
+
+    <!-- Legend dots, coloured by the item's style key -->
+    <Style Selector="Ellipse.dot">
+        <Setter Property="Width" Value="8" />
+        <Setter Property="Height" Value="8" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style Selector="Ellipse.dot[Tag=solar]"><Setter Property="Fill" Value="{DynamicResource Brush.Sun}" /></Style>
+    <Style Selector="Ellipse.dot[Tag=home]"><Setter Property="Fill" Value="{DynamicResource Brush.Teal}" /></Style>
+    <Style Selector="Ellipse.dot[Tag=grid]"><Setter Property="Fill" Value="{DynamicResource Brush.Mint}" /></Style>
+
+    <!-- Range selector: a ListBox presented as a segmented control -->
+    <Style Selector="ListBox.segmented">
+        <Setter Property="Background" Value="{DynamicResource Brush.Segment}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Radius.Segment}" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="ItemsPanel">
+            <ItemsPanelTemplate>
+                <UniformGrid Rows="1" />
+            </ItemsPanelTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="ListBox.segmented > ListBoxItem">
+        <Setter Property="Padding" Value="0,9" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Radius.SegmentItem}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Body}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.InkMuted}" />
+    </Style>
+    <Style Selector="ListBox.segmented > ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Brush.Hover}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Ink}" />
+    </Style>
+    <Style Selector="ListBox.segmented > ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Brush.Surface}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Ink}" />
+        <Setter Property="BoxShadow" Value="{DynamicResource Shadow.Segment}" />
+    </Style>
+
+    <!-- Chart -->
+    <Style Selector="c|AreaChart">
+        <Setter Property="Height" Value="128" />
+        <Setter Property="Inset" Value="0.0833" />
+        <Setter Property="MarkerRingBrush" Value="{DynamicResource Brush.Surface}" />
+    </Style>
+    <Style Selector="c|AreaChart.solar">
+        <Setter Property="Stroke" Value="{DynamicResource Brush.Sun}" />
+        <Setter Property="StrokeThickness" Value="2.5" />
+        <Setter Property="Fill" Value="{DynamicResource Brush.SolarFill}" />
+        <Setter Property="MarkerBrush" Value="{DynamicResource Brush.Sun}" />
+        <Setter Property="MarkerLineBrush" Value="{DynamicResource Brush.LineStrong}" />
+    </Style>
+    <Style Selector="c|AreaChart.home">
+        <Setter Property="Stroke" Value="{DynamicResource Brush.TealDeep}" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="MarkerBrush" Value="{DynamicResource Brush.TealDeep}" />
+    </Style>
+
+    <!-- Progress -->
+    <Style Selector="ProgressBar.slim">
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="Height" Value="6" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Segment}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.ForestLight}" />
+    </Style>
+
+    <!-- Devices -->
+    <Style Selector="Border.device-row">
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+    </Style>
+    <Style Selector="Border.device-row:pointerover">
+        <Setter Property="Background" Value="{DynamicResource Brush.Hover}" />
+    </Style>
+    <Style Selector="Border.badge">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Radius.Badge}" />
+    </Style>
+    <Style Selector="Border.badge > Path">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="StrokeThickness" Value="1.8" />
+        <Setter Property="StrokeLineCap" Value="Round" />
+        <Setter Property="StrokeJoin" Value="Round" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <!-- One tone per device, picked by the item's style key -->
+    <Style Selector="Border.badge[Tag=ev]"><Setter Property="Background" Value="{DynamicResource Brush.EvTint}" /></Style>
+    <Style Selector="Border.badge[Tag=ev] > Path">
+        <Setter Property="Data" Value="{DynamicResource Icon.Bolt}" />
+        <Setter Property="Stroke" Value="{DynamicResource Brush.Ev}" />
+    </Style>
+    <Style Selector="Border.badge[Tag=heat]"><Setter Property="Background" Value="{DynamicResource Brush.HeatTint}" /></Style>
+    <Style Selector="Border.badge[Tag=heat] > Path">
+        <Setter Property="Data" Value="{DynamicResource Icon.Wind}" />
+        <Setter Property="Stroke" Value="{DynamicResource Brush.Heat}" />
+    </Style>
+    <Style Selector="Border.badge[Tag=dishwasher]"><Setter Property="Background" Value="{DynamicResource Brush.DishwasherTint}" /></Style>
+    <Style Selector="Border.badge[Tag=dishwasher] > Path">
+        <Setter Property="Data" Value="{DynamicResource Icon.Dishwasher}" />
+        <Setter Property="Stroke" Value="{DynamicResource Brush.Dishwasher}" />
+    </Style>
+    <Style Selector="Border.badge[Tag=pool]"><Setter Property="Background" Value="{DynamicResource Brush.PoolTint}" /></Style>
+    <Style Selector="Border.badge[Tag=pool] > Path">
+        <Setter Property="Data" Value="{DynamicResource Icon.Waves}" />
+        <Setter Property="Stroke" Value="{DynamicResource Brush.Pool}" />
+    </Style>
+    <Style Selector="Border.badge[Tag=water]"><Setter Property="Background" Value="{DynamicResource Brush.WaterTint}" /></Style>
+    <Style Selector="Border.badge[Tag=water] > Path">
+        <Setter Property="Data" Value="{DynamicResource Icon.Drop}" />
+        <Setter Property="Stroke" Value="{DynamicResource Brush.Water}" />
+    </Style>
+
+    <!-- Buttons -->
+    <Style Selector="Button.link">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.ForestLight}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Caption}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Padding" Value="10,6" />
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+    <Style Selector="Button.link:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Brush.Hover}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Forest}" />
+    </Style>
+
+    <Style Selector="Button.cta">
+        <Setter Property="Background" Value="{DynamicResource Brush.Forest}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.OnForest}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Caption}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Padding" Value="16,10" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Radius.Control}" />
+        <Setter Property="RenderTransform" Value="none" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.12" />
+            </Transitions>
+        </Setter>
+    </Style>
+    <Style Selector="Button.cta:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Brush.ForestLight}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.OnForest}" />
+    </Style>
+    <Style Selector="Button.cta:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.96)" />
+    </Style>
+    <Style Selector="Button.cta:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Brush.Forest}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.OnForest}" />
+    </Style>
+
+    <!-- Tip banner -->
+    <Style Selector="Border.tip">
+        <Setter Property="Background" Value="{DynamicResource Brush.TipSurface}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.TipLine}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Radius.Card}" />
+        <Setter Property="Padding" Value="14" />
+    </Style>
+    <Style Selector="Border.tip-badge">
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Radius.Badge}" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Surface}" />
+    </Style>
+    <Style Selector="Path.tip-glyph">
+        <Setter Property="Stroke" Value="{DynamicResource Brush.Dishwasher}" />
+    </Style>
+</Styles>

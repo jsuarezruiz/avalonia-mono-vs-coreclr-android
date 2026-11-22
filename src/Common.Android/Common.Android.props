@@ -1,0 +1,41 @@
+<Project>
+  <!--
+    Shared by every Android head. A head sets <BenchScenario> and imports eng/Variants.props first, then this file.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <!-- -p:BenchTrack=net11 builds the same app for .NET 11 (CoreCLR only: Mono on Android is gone there, NETSDK1242).
+         The target framework is a custom property, not TargetFramework itself, because a global TargetFramework
+         would also flow into the referenced net10.0 libraries. -->
+    <BenchTrack Condition="'$(BenchTrack)' == ''">net10</BenchTrack>
+    <BenchTfm Condition="'$(BenchTfm)' == '' and '$(BenchTrack)' == 'net11'">net11.0-android</BenchTfm>
+    <BenchTfm Condition="'$(BenchTfm)' == ''">net10.0-android</BenchTfm>
+    <TargetFramework>$(BenchTfm)</TargetFramework>
+    <!-- API 24+ for Process.StartElapsedRealtime, which the probe uses. -->
+    <SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
+
+    <!-- One ABI only, so APK sizes are comparable and CoreCLR (arm64/x64 only) can build. Override with -r. -->
+    <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">android-arm64</RuntimeIdentifier>
+
+    <!-- One package per track, scenario and variant, so everything can be installed side by side. -->
+    <ApplicationId>com.avaloniabench.$(BenchTrack).$(BenchScenario).$(Variant.Replace('-', ''))</ApplicationId>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+
+    <!-- Experiments only: -p:BenchPreload=true compiles in an early libandroid load (see the dashboard Application). -->
+    <DefineConstants Condition="'$(BenchPreload)' == 'true'">$(DefineConstants);BENCH_PRELOAD_LIBANDROID</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BenchProbe.cs" Link="BenchProbe.cs" />
+    <AndroidResource Include="$(MSBuildThisFileDirectory)Resources/**/*"
+                     Link="Resources/%(RecursiveDir)%(Filename)%(Extension)" />
+    <AndroidResource Include="$(MSBuildThisFileDirectory)Icon.png" Link="Resources/drawable/Icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Android" />
+    <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen" />
+  </ItemGroup>
+</Project>

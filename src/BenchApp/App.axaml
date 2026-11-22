@@ -1,0 +1,20 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="BenchApp.App"
+             RequestedThemeVariant="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://BenchApp/Styles/Palette.axaml" />
+                <ResourceInclude Source="avares://BenchApp/Styles/Icons.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="avares://BenchApp/Styles/Typography.axaml" />
+        <StyleInclude Source="avares://BenchApp/Styles/Components.axaml" />
+    </Application.Styles>
+</Application>

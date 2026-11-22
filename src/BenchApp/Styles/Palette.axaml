@@ -1,0 +1,130 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--
+        Design tokens for the dashboard: raw palette first, then the semantic brushes, shapes, type sizes and
+        shadows the styles actually use. Styles refer to the semantic names (Brush.*, Radius.*, FontSize.*,
+        Shadow.*) and never to a literal colour, so re-skinning the screen means editing this file only.
+    -->
+
+    <!-- Palette -->
+    <Color x:Key="Color.Paper">#F6F2EA</Color>
+    <Color x:Key="Color.Surface">#FFFFFF</Color>
+    <Color x:Key="Color.Ink">#1B2A24</Color>
+    <Color x:Key="Color.InkMuted">#66756D</Color>
+    <Color x:Key="Color.InkFaint">#98A39C</Color>
+    <Color x:Key="Color.Line">#E8E2D5</Color>
+    <Color x:Key="Color.LineStrong">#CFC7B4</Color>
+    <Color x:Key="Color.Forest">#0F3D2E</Color>
+    <Color x:Key="Color.ForestLight">#1F6B50</Color>
+    <Color x:Key="Color.Mint">#B9D8CB</Color>
+    <Color x:Key="Color.Sun">#F4B942</Color>
+    <Color x:Key="Color.SunFadeTop">#5CF4B942</Color>
+    <Color x:Key="Color.SunFadeBottom">#00F4B942</Color>
+    <Color x:Key="Color.Teal">#5CC8B8</Color>
+    <Color x:Key="Color.TealDeep">#2A9D8F</Color>
+    <Color x:Key="Color.White70">#B3FFFFFF</Color>
+    <Color x:Key="Color.White16">#29FFFFFF</Color>
+    <Color x:Key="Color.Segment">#EBE5D7</Color>
+    <Color x:Key="Color.Hover">#F4F0E6</Color>
+    <Color x:Key="Color.TipSurface">#FFF4D6</Color>
+    <Color x:Key="Color.TipLine">#F0D98F</Color>
+    <Color x:Key="Color.Alert">#E4572E</Color>
+
+    <!-- Device tones: tinted badge background + the colour of its icon -->
+    <Color x:Key="Color.Ev">#1F7A5C</Color>
+    <Color x:Key="Color.EvTint">#E3F4EE</Color>
+    <Color x:Key="Color.Heat">#2B6FA8</Color>
+    <Color x:Key="Color.HeatTint">#E4F1FB</Color>
+    <Color x:Key="Color.Dishwasher">#B7791F</Color>
+    <Color x:Key="Color.DishwasherTint">#FBEFD5</Color>
+    <Color x:Key="Color.Pool">#6B7A72</Color>
+    <Color x:Key="Color.PoolTint">#ECEFEC</Color>
+    <Color x:Key="Color.Water">#C2492F</Color>
+    <Color x:Key="Color.WaterTint">#FBE6E0</Color>
+
+    <!-- Semantic brushes -->
+    <SolidColorBrush x:Key="Brush.Paper" Color="{StaticResource Color.Paper}" />
+    <SolidColorBrush x:Key="Brush.Surface" Color="{StaticResource Color.Surface}" />
+    <SolidColorBrush x:Key="Brush.Ink" Color="{StaticResource Color.Ink}" />
+    <SolidColorBrush x:Key="Brush.InkMuted" Color="{StaticResource Color.InkMuted}" />
+    <SolidColorBrush x:Key="Brush.InkFaint" Color="{StaticResource Color.InkFaint}" />
+    <SolidColorBrush x:Key="Brush.Line" Color="{StaticResource Color.Line}" />
+    <SolidColorBrush x:Key="Brush.LineStrong" Color="{StaticResource Color.LineStrong}" />
+    <SolidColorBrush x:Key="Brush.Forest" Color="{StaticResource Color.Forest}" />
+    <SolidColorBrush x:Key="Brush.ForestLight" Color="{StaticResource Color.ForestLight}" />
+    <SolidColorBrush x:Key="Brush.OnForest" Color="{StaticResource Color.Surface}" />
+    <SolidColorBrush x:Key="Brush.OnForestMuted" Color="{StaticResource Color.White70}" />
+    <SolidColorBrush x:Key="Brush.OnForestTrack" Color="{StaticResource Color.White16}" />
+    <SolidColorBrush x:Key="Brush.Mint" Color="{StaticResource Color.Mint}" />
+    <SolidColorBrush x:Key="Brush.Sun" Color="{StaticResource Color.Sun}" />
+    <SolidColorBrush x:Key="Brush.Teal" Color="{StaticResource Color.Teal}" />
+    <SolidColorBrush x:Key="Brush.TealDeep" Color="{StaticResource Color.TealDeep}" />
+    <SolidColorBrush x:Key="Brush.Segment" Color="{StaticResource Color.Segment}" />
+    <SolidColorBrush x:Key="Brush.Hover" Color="{StaticResource Color.Hover}" />
+    <SolidColorBrush x:Key="Brush.TipSurface" Color="{StaticResource Color.TipSurface}" />
+    <SolidColorBrush x:Key="Brush.TipLine" Color="{StaticResource Color.TipLine}" />
+    <SolidColorBrush x:Key="Brush.Alert" Color="{StaticResource Color.Alert}" />
+
+    <SolidColorBrush x:Key="Brush.Ev" Color="{StaticResource Color.Ev}" />
+    <SolidColorBrush x:Key="Brush.EvTint" Color="{StaticResource Color.EvTint}" />
+    <SolidColorBrush x:Key="Brush.Heat" Color="{StaticResource Color.Heat}" />
+    <SolidColorBrush x:Key="Brush.HeatTint" Color="{StaticResource Color.HeatTint}" />
+    <SolidColorBrush x:Key="Brush.Dishwasher" Color="{StaticResource Color.Dishwasher}" />
+    <SolidColorBrush x:Key="Brush.DishwasherTint" Color="{StaticResource Color.DishwasherTint}" />
+    <SolidColorBrush x:Key="Brush.Pool" Color="{StaticResource Color.Pool}" />
+    <SolidColorBrush x:Key="Brush.PoolTint" Color="{StaticResource Color.PoolTint}" />
+    <SolidColorBrush x:Key="Brush.Water" Color="{StaticResource Color.Water}" />
+    <SolidColorBrush x:Key="Brush.WaterTint" Color="{StaticResource Color.WaterTint}" />
+
+    <LinearGradientBrush x:Key="Brush.Hero" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Color="{StaticResource Color.Forest}" Offset="0" />
+        <GradientStop Color="{StaticResource Color.ForestLight}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Brush.Avatar" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Color="{StaticResource Color.Sun}" Offset="0" />
+        <GradientStop Color="{StaticResource Color.Alert}" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Brush.SolarFill" StartPoint="0%,0%" EndPoint="0%,100%">
+        <GradientStop Color="{StaticResource Color.SunFadeTop}" Offset="0" />
+        <GradientStop Color="{StaticResource Color.SunFadeBottom}" Offset="1" />
+    </LinearGradientBrush>
+
+    <!-- Shapes and spacing -->
+    <CornerRadius x:Key="Radius.Hero">28</CornerRadius>
+    <CornerRadius x:Key="Radius.Card">20</CornerRadius>
+    <CornerRadius x:Key="Radius.Control">12</CornerRadius>
+    <CornerRadius x:Key="Radius.Segment">14</CornerRadius>
+    <CornerRadius x:Key="Radius.SegmentItem">10</CornerRadius>
+    <CornerRadius x:Key="Radius.Badge">12</CornerRadius>
+    <Thickness x:Key="Padding.Hero">20</Thickness>
+    <Thickness x:Key="Padding.Card">16</Thickness>
+    <Thickness x:Key="Padding.Tile">14</Thickness>
+    <Thickness x:Key="Margin.Page">20,40,20,28</Thickness>
+    <x:Double x:Key="Spacing.Page">16</x:Double>
+
+    <!-- Type scale -->
+    <x:Double x:Key="FontSize.Display">34</x:Double>
+    <x:Double x:Key="FontSize.Headline">22</x:Double>
+    <x:Double x:Key="FontSize.Title">16</x:Double>
+    <x:Double x:Key="FontSize.Body">14</x:Double>
+    <x:Double x:Key="FontSize.Caption">12</x:Double>
+    <x:Double x:Key="FontSize.Micro">11</x:Double>
+
+    <!-- Elevation -->
+    <BoxShadows x:Key="Shadow.Card">0 1 2 0 #140F3D2E, 0 8 18 -10 #140F3D2E</BoxShadows>
+    <BoxShadows x:Key="Shadow.CardHover">0 2 4 0 #180F3D2E, 0 14 28 -10 #2A0F3D2E</BoxShadows>
+    <BoxShadows x:Key="Shadow.Hero">0 14 30 -14 #660F3D2E</BoxShadows>
+    <BoxShadows x:Key="Shadow.Segment">0 1 3 0 #1F0F3D2E</BoxShadows>
+
+    <!-- Overrides of Fluent's own control resources (Application.Resources wins over the theme) -->
+    <SolidColorBrush x:Key="ToggleSwitchFillOn" Color="{StaticResource Color.ForestLight}" />
+    <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOver" Color="{StaticResource Color.Forest}" />
+    <SolidColorBrush x:Key="ToggleSwitchFillOnPressed" Color="{StaticResource Color.Forest}" />
+    <SolidColorBrush x:Key="ToggleSwitchStrokeOn" Color="{StaticResource Color.ForestLight}" />
+    <SolidColorBrush x:Key="ToggleSwitchStrokeOnPointerOver" Color="{StaticResource Color.Forest}" />
+    <SolidColorBrush x:Key="ToggleSwitchStrokeOnPressed" Color="{StaticResource Color.Forest}" />
+    <SolidColorBrush x:Key="ToggleSwitchFillOff" Color="{StaticResource Color.Segment}" />
+    <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="{StaticResource Color.LineStrong}" />
+    <x:Double x:Key="ToggleSwitchThemeMinWidth">0</x:Double>
+    <x:Double x:Key="ProgressBarThemeMinHeight">6</x:Double>
+</ResourceDictionary>

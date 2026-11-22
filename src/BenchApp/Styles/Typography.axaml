@@ -1,0 +1,63 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Text roles. Views pick a role with Classes="..."; sizes and colours come from Palette.axaml. -->
+
+    <Style Selector="TextBlock.eyebrow">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Micro}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="LetterSpacing" Value="1.2" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.InkMuted}" />
+    </Style>
+    <Style Selector="TextBlock.headline">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Headline}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Ink}" />
+    </Style>
+    <Style Selector="TextBlock.title">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Title}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Ink}" />
+    </Style>
+    <Style Selector="TextBlock.body">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Body}" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Ink}" />
+    </Style>
+    <Style Selector="TextBlock.caption">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Caption}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.InkMuted}" />
+    </Style>
+    <Style Selector="TextBlock.micro">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Micro}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.InkFaint}" />
+    </Style>
+    <Style Selector="TextBlock.value">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Headline}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Ink}" />
+    </Style>
+    <Style Selector="TextBlock.power">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Caption}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Ink}" />
+    </Style>
+
+    <!-- On the dark hero card -->
+    <Style Selector="TextBlock.on-forest">
+        <Setter Property="Foreground" Value="{DynamicResource Brush.OnForest}" />
+    </Style>
+    <Style Selector="TextBlock.on-forest-muted">
+        <Setter Property="Foreground" Value="{DynamicResource Brush.OnForestMuted}" />
+    </Style>
+    <Style Selector="TextBlock.display">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Display}" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style Selector="TextBlock.avatar-text">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Title}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.OnForest}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+</Styles>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <BenchScenario>dashboard</BenchScenario>
+  </PropertyGroup>
+
+  <!-- What each runtime variant means lives in one place: eng/Variants.props -->
+  <Import Project="$(MSBuildThisFileDirectory)..\..\eng\Variants.props" />
+  <Import Project="$(MSBuildThisFileDirectory)..\Common.Android\Common.Android.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\BenchApp\BenchApp.csproj" />
+  </ItemGroup>
+</Project>

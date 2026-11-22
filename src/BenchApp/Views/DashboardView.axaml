@@ -1,0 +1,196 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:BenchApp.ViewModels"
+             xmlns:c="using:BenchApp.Controls"
+             x:Class="BenchApp.Views.DashboardView"
+             x:DataType="vm:DashboardViewModel"
+             Background="{DynamicResource Brush.Paper}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Classes="page">
+
+            <!-- Header -->
+            <Grid ColumnDefinitions="*,Auto,Auto">
+                <StackPanel VerticalAlignment="Center" Spacing="2">
+                    <TextBlock Classes="caption" Text="{Binding DateLine}" />
+                    <TextBlock Classes="headline" Text="{Binding Greeting}" />
+                </StackPanel>
+                <Grid Grid.Column="1" Margin="0,0,10,0">
+                    <Button Classes="icon" AutomationProperties.Name="Notifications">
+                        <Path Classes="glyph" Data="{DynamicResource Icon.Bell}" />
+                    </Button>
+                    <Ellipse Classes="alert-dot" />
+                </Grid>
+                <Border Grid.Column="2" Classes="avatar">
+                    <TextBlock Classes="avatar-text" Text="{Binding Initial}" />
+                </Border>
+            </Grid>
+
+            <!-- Hero: today's self-sufficiency -->
+            <Border Classes="hero">
+                <StackPanel Spacing="16">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Classes="eyebrow on-forest-muted" Text="{Binding HeroLabel}" VerticalAlignment="Center" />
+                        <Border Grid.Column="1" Classes="note">
+                            <TextBlock Classes="micro on-forest" Text="{Binding HeroNote}" />
+                        </Border>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Grid Classes="gauge" AutomationProperties.Name="Self-powered, 82 percent">
+                            <c:RingGauge Classes="hero" Value="{Binding GaugeFraction}" />
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Classes="display on-forest" Text="{Binding SelfPoweredValue}" />
+                                    <TextBlock Classes="caption on-forest-muted" Text="%" Margin="2,6,0,0" VerticalAlignment="Top" />
+                                </StackPanel>
+                                <TextBlock Classes="caption on-forest-muted" Text="{Binding SelfPoweredCaption}"
+                                           HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+
+                        <ItemsControl Grid.Column="1" Margin="22,0,0,0" VerticalAlignment="Center"
+                                      ItemsSource="{Binding FlowStats}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Spacing="14" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:FlowStat">
+                                    <Grid ColumnDefinitions="Auto,*,Auto">
+                                        <Ellipse Classes="dot" Tag="{Binding StyleKey}" />
+                                        <TextBlock Grid.Column="1" Classes="caption on-forest-muted" Text="{Binding Label}"
+                                                   Margin="8,0" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="2" Classes="body on-forest" Text="{Binding Value}"
+                                                   FontWeight="Bold" VerticalAlignment="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Range selector -->
+            <ListBox Classes="segmented" ItemsSource="{Binding Ranges}" SelectedIndex="0"
+                     AutomationProperties.Name="Time range">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- Power flow chart -->
+            <Border Classes="card interactive">
+                <StackPanel Spacing="12">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel Spacing="2">
+                            <TextBlock Classes="title" Text="{Binding ChartTitle}" />
+                            <TextBlock Classes="caption" Text="{Binding ChartSubtitle}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <Ellipse Classes="dot" Tag="solar" />
+                                <TextBlock Classes="caption" Text="Solar" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <Ellipse Classes="dot" Tag="home" />
+                                <TextBlock Classes="caption" Text="Home" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid>
+                        <c:AreaChart Classes="solar" Values="{Binding SolarKw}" Maximum="{Binding ChartMaximum}"
+                                     MarkerPosition="{Binding NowPosition}" />
+                        <c:AreaChart Classes="home" Values="{Binding HomeKw}" Maximum="{Binding ChartMaximum}"
+                                     MarkerPosition="{Binding NowPosition}" />
+                    </Grid>
+
+                    <ItemsControl ItemsSource="{Binding HourLabels}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Rows="1" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="x:String">
+                                <TextBlock Classes="micro" Text="{Binding}" HorizontalAlignment="Center" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- Summary tiles -->
+            <ItemsControl Margin="-5,0" ItemsSource="{Binding Tiles}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:Tile">
+                        <Border Classes="card interactive tile" Margin="5,0,5,8">
+                            <StackPanel Spacing="4">
+                                <TextBlock Classes="eyebrow" Text="{Binding Label}" />
+                                <TextBlock Classes="value" Text="{Binding Value}" />
+                                <ProgressBar Classes="slim" Value="{Binding Progress}" Minimum="0" Maximum="100"
+                                             IsVisible="{Binding Progress, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                             Margin="0,2" />
+                                <TextBlock Classes="caption" Text="{Binding Caption}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Devices -->
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Classes="title" Text="{Binding DevicesTitle}" VerticalAlignment="Center" />
+                <Button Grid.Column="1" Classes="link" Content="{Binding DevicesAction}" />
+            </Grid>
+
+            <Border Classes="card" Padding="6">
+                <ItemsControl ItemsSource="{Binding Devices}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:Device">
+                            <Border Classes="device-row">
+                                <Grid ColumnDefinitions="Auto,*,Auto,Auto">
+                                    <Border Classes="badge" Tag="{Binding StyleKey}">
+                                        <Path />
+                                    </Border>
+                                    <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center">
+                                        <TextBlock Classes="body" Text="{Binding Name}" />
+                                        <TextBlock Classes="caption" Text="{Binding Status}" />
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="2" Classes="power" Text="{Binding Power}"
+                                               Margin="0,0,10,0" VerticalAlignment="Center" />
+                                    <ToggleSwitch Grid.Column="3" IsChecked="{Binding IsOn, Mode=OneWay}"
+                                                  OnContent="" OffContent="" VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+
+            <!-- Tip -->
+            <Border Classes="tip">
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <Border Classes="tip-badge">
+                        <Path Classes="glyph tip-glyph" Data="{DynamicResource Icon.Sun}" />
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center" Spacing="2">
+                        <TextBlock Classes="body" Text="{Binding TipTitle}" TextWrapping="Wrap" />
+                        <TextBlock Classes="caption" Text="{Binding TipBody}" TextWrapping="Wrap" />
+                    </StackPanel>
+                    <Button Grid.Column="2" Classes="cta" Content="{Binding TipAction}" VerticalAlignment="Center" />
+                </Grid>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
