@@ -1,0 +1,10 @@
+<Project>
+  <!--
+    Added by avalonia-mono-vs-coreclr (not part of upstream).
+    The vignettes pin versions on each PackageReference, so the repository-level central package management
+    must not apply to this subtree.
+  -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+</Project>

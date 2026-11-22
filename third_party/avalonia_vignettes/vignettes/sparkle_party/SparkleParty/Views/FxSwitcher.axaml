@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:shared="using:AvaloniaVignettes.Shared.Controls"
+             x:Class="SparkleParty.Views.FxSwitcher"
+             Width="320"
+             Height="100">
+
+  <shared:FlexPanel Orientation="Horizontal" MainAxisAlignment="SpaceBetween" VerticalAlignment="Top">
+    <Button Classes="fx" Tag="0" Click="OnClick" AutomationProperties.Name="Waterfall effect">
+      <StackPanel Spacing="4">
+        <Image Name="Waterfall" Width="56" Height="52" />
+        <TextBlock Classes="instruction" Text="Waterfall" />
+      </StackPanel>
+    </Button>
+    <Button Classes="fx" Tag="1" Click="OnClick" AutomationProperties.Name="Fireworks effect">
+      <StackPanel Spacing="4">
+        <Image Name="Fireworks" Width="56" Height="52" />
+        <TextBlock Classes="instruction" Text="Fireworks" />
+      </StackPanel>
+    </Button>
+    <Button Classes="fx" Tag="2" Click="OnClick" AutomationProperties.Name="Comet effect">
+      <StackPanel Spacing="4">
+        <Image Name="Comet" Width="56" Height="52" />
+        <TextBlock Classes="instruction" Text="Comet" />
+      </StackPanel>
+    </Button>
+    <Button Classes="fx" Tag="3" Click="OnClick" AutomationProperties.Name="Pinwheel effect">
+      <StackPanel Spacing="4">
+        <Image Name="Pinwheel" Width="56" Height="52" />
+        <TextBlock Classes="instruction" Text="Pinwheel" />
+      </StackPanel>
+    </Button>
+  </shared:FlexPanel>
+
+</UserControl>

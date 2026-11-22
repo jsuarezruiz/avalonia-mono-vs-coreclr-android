@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../_hosts/Vignette.Core.props" />
+
+  <ItemGroup>
+    <!-- The particle field is drawn with one DrawVertices call, which Avalonia reaches through a
+         Skia lease rather than wrapping itself. -->
+    <PackageReference Include="Avalonia.Skia" Version="$(AvaloniaVersion)" />
+  </ItemGroup>
+
+</Project>
