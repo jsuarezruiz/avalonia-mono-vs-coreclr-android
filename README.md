@@ -7,9 +7,14 @@ Does an Avalonia app start faster, slower or bigger on CoreCLR than on Mono? Thi
 
 ## What we found so far
 
+![The same Avalonia screen starting on a POCO F7 Ultra, Mono on the left and CoreCLR on the right](docs/media/mono-vs-coreclr-poco-f7-ultra.gif)
+
 On a POCO F7 Ultra (Android 16), after a cold start the same Avalonia screen was fully drawn in 692 ms on .NET 10 with
 Mono and in 294 ms on .NET 11 with CoreCLR. That is 57.6% less time (95% CI 56.7% to 58.8%, 30 runs each). The CoreCLR
 APK is bigger (21.6 MB against 15.8 MB) and uses more memory (180 MB against 154 MB).
+
+Each side of the clip plays the recorded launch closest to its median, one after the other on the same phone, lined up
+on the start. The numbers on it come from all 30 runs.
 
 It is one phone on one day, so read it as a first data point. The full report is in
 [`results/raw`](results/raw/dashboard_poco-f7-ultra_20261118.report.md).
@@ -50,7 +55,7 @@ controlled, and what to report with a claim, is in [`docs/methodology.md`](docs/
 - `third_party/` has the sparkle demo and its licences.
 - `results/` has raw CSVs and reports.
 - `repros/` has a small repro app for a CoreCLR startup problem on .NET 10.
-- `docs/` has the tool reference and the methodology.
+- `docs/` has the tool reference, the methodology and the GIF shown above (`docs/media`).
 
 ## Credits and licence
 

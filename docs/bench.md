@@ -69,8 +69,14 @@ that reaches zero, or picked a clip whose finishing order contradicts the statis
 code 2.
 
 A session lands in `results/bench/<time>_<device>/`: `runs.csv`, `takes.csv`, `report.md`, `compare.json`, the video and
-the chosen clips. Videos and clips are ignored by git, so attach the video to a post or a release. Commit `runs.csv` next
-to any video you share.
+the chosen clips. Videos and clips in `results/bench` are ignored by git, so attach the video to a post or a release.
+Commit `runs.csv` next to any video you share. [`media`](media) only holds the GIF the README shows, made from the POCO
+F7 Ultra video like this (about 2.8 MB at this size, with the last frame held for two seconds so the result can be read
+before it loops):
+
+```bash
+ffmpeg -i compare.mp4 -vf "fps=15,scale=1280:-1:flags=lanczos,tpad=stop_mode=clone:stop_duration=2,split[a][b];[a]palettegen=max_colors=256:stats_mode=full[p];[b][p]paletteuse=dither=sierra2_4a:diff_mode=rectangle" -loop 0 compare.gif
+```
 
 ## Using a real phone
 
